@@ -1,15 +1,12 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import sklearn
-#from mpl_toolkits.basemap import Basemap
 import numpy
-#import plotly.express as px
-#import plotly.graph_objects as go
+import plotly.express as px
+import sklearn
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-import plotly.express as px
 
 # Cargar datos
 st.cache_data()
@@ -40,15 +37,11 @@ def mostrar_homepage():
 
     # Gráfico de evolución de accidentes mortales y no mortales
     st.markdown("### Evolución de los accidentes al año")
-    accidentes_anio = df_accidentes.groupby("AÑO").agg({"MUERTOS": "sum", "HERIDOS": "sum"}).reset_index()
-    fig, ax = plt.subplots(figsize=(5, 5))
-    ax.plot(accidentes_anio['AÑO'], accidentes_anio['MUERTOS'], marker='o', label='Muertos')
-    ax.plot(accidentes_anio['AÑO'], accidentes_anio['HERIDOS'], marker='o', label='Heridos')
-    ax.set_xlabel('Año')
-    ax.set_ylabel('Número de Accidentes')
-    ax.set_title('Evolución de Accidentes Mortales y No Mortales')
-    ax.legend(title='Tipo de accidente')
-    st.pyplot(fig)
+        accidentes_anio = df_accidentes.groupby("AÑO").agg({"MUERTOS": "sum", "HERIDOS": "sum"}).reset_index()
+        fig_accidentes = px.line(accidentes_anio, x="AÑO", y=["MUERTOS", "HERIDOS"], markers=True,
+                                 labels={"value": "Número de Accidentes", "variable": "Tipo de accidente"},
+                                 title="Evolución de Accidentes Mortales y No Mortales")
+    st.plotly_chart(fig_accidentes, use_container_width=True)
 
     # Descripción del equipo
     st.markdown("### Autores del Proyecto")
@@ -71,7 +64,6 @@ def prediccion_accidentes():
     modelo_acc = RandomForestClassifier()
     modelo_acc.fit(X_train_acc, y_train_acc)
     y_pred_acc = modelo_acc.predict(X_test_acc)
-    st.table(y_pred_acc)
 
     # Precisión del modelo
     accuracy_acc = accuracy_score(y_test_acc, y_pred_acc)
@@ -92,6 +84,21 @@ def prediccion_accidentes():
     )
     st.plotly_chart(fig_accidentes, use_container_width=True)
 
+    # Mapa interactivo con la red de carreteras
+    st.markdown("### Mapa de la Red de Carreteras")
+    fig_carreteras = px.scatter_mapbox(
+        df_trafico,
+        lat="LAT",  # Reemplaza con la columna correspondiente de latitud
+        lon="LONG",  # Reemplaza con la columna correspondiente de longitud
+        hover_data=["DESCRIPCIÓN DEL TRAMO"],
+        color="IMD AÑO",
+        color_continuous_scale=px.colors.cyclical.IceFire,
+        mapbox_style="carto-positron",
+        zoom=5,
+        title="Red de Carreteras y Volumen de Tráfico"
+    )
+    st.plotly_chart(fig_carreteras, use_container_width=True)
+
 # Función para la pestaña de predicción de zonas críticas de tráfico
 def prediccion_trafico():
     st.markdown("## Predicción de Zonas Críticas de Tráfico")
@@ -106,7 +113,6 @@ def prediccion_trafico():
     modelo_trafico = RandomForestClassifier()
     modelo_trafico.fit(X_train_traffic, y_train_traffic)
     y_pred_trafico = modelo_trafico.predict(X_test_traffic)
-    st.table(y_pred_trafico)
 
     # Precisión del modelo
     accuracy_traffic = accuracy_score(y_test_traffic, y_pred_trafico)
