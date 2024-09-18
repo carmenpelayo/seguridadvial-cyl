@@ -9,6 +9,7 @@ import numpy
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+import plotly.express as px
 
 # Cargar datos
 st.cache_data()
@@ -76,7 +77,6 @@ def prediccion_accidentes():
     accuracy_acc = accuracy_score(y_test_acc, y_pred_acc)
     st.metric(label="Precisión del modelo de predicción de accidentes", value=f"{accuracy_acc:.2%}")
 
-    '''
     # Mapa interactivo con las zonas críticas de accidentes
     fig_accidentes = px.scatter_mapbox(
         df_accidentes,
@@ -91,7 +91,6 @@ def prediccion_accidentes():
         title="Mapa de Accidentes"
     )
     st.plotly_chart(fig_accidentes, use_container_width=True)
-    '''
 
 # Función para la pestaña de predicción de zonas críticas de tráfico
 def prediccion_trafico():
