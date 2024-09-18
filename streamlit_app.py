@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
+#import plotly.express as px
+#import plotly.graph_objects as go
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -9,11 +9,11 @@ from sklearn.metrics import accuracy_score
 # Cargar datos
 @st.cache
 def cargar_datos_accidentes():
-    return pd.read_csv("accidentalidad-por-carreteras.csv", sep=";")  # Reemplaza con la ruta de tu archivo de accidentes
+    return pd.read_csv("accidentalidad-por-carreteras.csv", sep=";")  
 
 @st.cache
 def cargar_datos_trafico():
-    return pd.read_csv("intensidades-medias-de-trafico-y-velocidades-red-regional-de-carreteras.csv", sep=";")  # Reemplaza con la ruta de tu archivo de tráfico
+    return pd.read_csv("intensidades-medias-de-trafico-y-velocidades-red-regional-de-carreteras.csv", sep=";")  
 
 # Configuración de la página
 st.set_page_config(page_title="Dashboard de Carreteras", layout="wide")
