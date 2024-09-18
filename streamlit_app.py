@@ -9,11 +9,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 # Cargar datos
-st.cache_data()
 def cargar_datos_accidentes():
     return pd.read_csv("accidentalidad-por-carreteras.csv", sep=";")  
 
-st.cache_data()
 def cargar_datos_trafico():
     return pd.read_csv("intensidades-medias-de-trafico-y-velocidades-red-regional-de-carreteras.csv", sep=";")  
 
