@@ -37,10 +37,10 @@ def mostrar_homepage():
 
     # Gráfico de evolución de accidentes mortales y no mortales
     st.markdown("### Evolución de los accidentes al año")
-        accidentes_anio = df_accidentes.groupby("AÑO").agg({"MUERTOS": "sum", "HERIDOS": "sum"}).reset_index()
-        fig_accidentes = px.line(accidentes_anio, x="AÑO", y=["MUERTOS", "HERIDOS"], markers=True,
-                                 labels={"value": "Número de Accidentes", "variable": "Tipo de accidente"},
-                                 title="Evolución de Accidentes Mortales y No Mortales")
+    accidentes_anio = df_accidentes.groupby("AÑO").agg({"MUERTOS": "sum", "HERIDOS": "sum"}).reset_index()
+    fig_accidentes = px.line(accidentes_anio, x="AÑO", y=["MUERTOS", "HERIDOS"], markers=True,
+                             labels={"value": "Número de Accidentes", "variable": "Tipo de accidente"},
+                             title="Evolución de Accidentes Mortales y No Mortales")
     st.plotly_chart(fig_accidentes, use_container_width=True)
 
     # Descripción del equipo
