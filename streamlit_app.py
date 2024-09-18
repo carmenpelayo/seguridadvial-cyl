@@ -6,9 +6,9 @@ import sklearn
 import numpy
 #import plotly.express as px
 #import plotly.graph_objects as go
-#from sklearn.ensemble import RandomForestClassifier
-#from sklearn.model_selection import train_test_split
-#from sklearn.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 # Cargar datos
 @st.cache
@@ -55,7 +55,7 @@ def mostrar_homepage():
     - **Autor 1**: Especialista en análisis de datos y modelos predictivos.
     - **Autor 2**: Ingeniero de tráfico con experiencia en análisis de redes viales.
     """)
-'''
+
 # Función para la pestaña de predicción de zonas críticas de accidentes
 def prediccion_accidentes():
     st.markdown("## Predicción de Zonas Críticas de Accidentes")
@@ -123,7 +123,7 @@ def prediccion_trafico():
         title="Mapa de Zonas Críticas de Tráfico"
     )
     st.plotly_chart(fig_trafico, use_container_width=True)
-'''
+
 # Definir las pestañas
 tab1, tab2, tab3 = st.tabs(["Homepage", "Zonas Críticas de Accidentes", "Zonas Críticas de Tráfico"])
 
