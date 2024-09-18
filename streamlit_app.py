@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
-import scikit-learn
+import matplotlib as plt
+import skearn
+import numpy
 #import plotly.express as px
 #import plotly.graph_objects as go
 #from sklearn.ensemble import RandomForestClassifier
@@ -30,16 +32,21 @@ def mostrar_homepage():
     
     st.markdown("""
     Este dashboard tiene como objetivo ayudar a los administradores de carreteras a identificar zonas críticas en términos de accidentes y tráfico, permitiendo una toma de decisiones más eficiente y preventiva.  
+    
     Las predicciones se basan en modelos de machine learning que analizan datos históricos de tráfico y accidentes.
     """)
 
     # Gráfico de evolución de accidentes mortales y no mortales
     st.markdown("### Evolución de los accidentes al año")
     accidentes_anio = df_accidentes.groupby("AÑO").agg({"MUERTOS": "sum", "HERIDOS": "sum"}).reset_index()
-    fig_accidentes = px.line(accidentes_anio, x="AÑO", y=["MUERTOS", "HERIDOS"], markers=True,
-                             labels={"value": "Número de Accidentes", "variable": "Tipo de accidente"},
-                             title="Evolución de Accidentes Mortales y No Mortales")
-    st.plotly_chart(fig_accidentes, use_container_width=True)
+    fig, ax = plt.subplots()
+    ax.plot(accidentes_anio['AÑO'], accidentes_anio['MUERTOS'], marker='o', label='Muertos')
+    ax.plot(accidentes_anio['AÑO'], accidentes_anio['HERIDOS'], marker='o', label='Heridos')
+    ax.set_xlabel('Año')
+    ax.set_ylabel('Número de Accidentes')
+    ax.set_title('Evolución de Accidentes Mortales y No Mortales')
+    ax.legend(title='Tipo de accidente')
+    st.pyplot(fig)
 
     # Mapa interactivo con la red de carreteras
     st.markdown("### Mapa de la Red de Carreteras")
