@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 #import sklearn
-from mpl_toolkits.basemap import Basemap
+#from mpl_toolkits.basemap import Basemap
 import numpy
 #import plotly.express as px
 #import plotly.graph_objects as go
@@ -48,21 +48,6 @@ def mostrar_homepage():
     ax.set_title('Evolución de Accidentes Mortales y No Mortales')
     ax.legend(title='Tipo de accidente')
     st.pyplot(fig)
-
-    # Mapa interactivo con la red de carreteras
-    st.markdown("### Mapa de la Red de Carreteras")
-    fig_carreteras = px.scatter_mapbox(
-        df_trafico,
-        lat="LAT",  # Reemplaza con la columna correspondiente de latitud
-        lon="LONG",  # Reemplaza con la columna correspondiente de longitud
-        hover_data=["DESCRIPCIÓN DEL TRAMO"],
-        color="IMD AÑO",
-        color_continuous_scale=px.colors.cyclical.IceFire,
-        mapbox_style="carto-positron",
-        zoom=5,
-        title="Red de Carreteras y Volumen de Tráfico"
-    )
-    st.plotly_chart(fig_carreteras, use_container_width=True)
 
     # Descripción del equipo
     st.markdown("### Autores del Proyecto")
