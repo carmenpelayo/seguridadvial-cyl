@@ -39,7 +39,7 @@ def mostrar_homepage():
     # Gráfico de evolución de accidentes mortales y no mortales
     st.markdown("### Evolución de los accidentes al año")
     accidentes_anio = df_accidentes.groupby("AÑO").agg({"MUERTOS": "sum", "HERIDOS": "sum"}).reset_index()
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10, 10))
     ax.plot(accidentes_anio['AÑO'], accidentes_anio['MUERTOS'], marker='o', label='Muertos')
     ax.plot(accidentes_anio['AÑO'], accidentes_anio['HERIDOS'], marker='o', label='Heridos')
     ax.set_xlabel('Año')
