@@ -42,21 +42,7 @@ def mostrar_homepage():
                              labels={"value": "Cantidad", "variable": "Tipo de accidente"},
                              title="Evolución de Accidentes Mortales y No Mortales")
     st.plotly_chart(fig_accidentes, use_container_width=True)
-
-    # Mapa interactivo con la red de carreteras
-    st.markdown("### Mapa de la Red de Carreteras")
-    fig_carreteras = px.scatter_map(
-        df_trafico,
-        lat="LAT",  # Reemplaza con la columna correspondiente de latitud
-        lon="LONG",  # Reemplaza con la columna correspondiente de longitud
-        hover_data=["DESCRIPCIÓN DEL TRAMO"],
-        color="IMD AÑO",
-        color_continuous_scale=px.colors.cyclical.IceFire,
-        zoom=5,
-        title="Volumen de Tráfico"
-    )
-    st.plotly_chart(fig_carreteras, use_container_width=True)
-
+    
     # Descripción del equipo
     st.markdown("### Autores del Proyecto")
     st.markdown("""
@@ -82,36 +68,6 @@ def prediccion_accidentes():
     # Precisión del modelo
     accuracy_acc = accuracy_score(y_test_acc, y_pred_acc)
     st.metric(label="Precisión del modelo de predicción de accidentes", value=f"{accuracy_acc:.2%}")
-
-    # Mapa interactivo con las zonas críticas de accidentes
-    fig_accidentes = px.scatter_mapbox(
-        df_accidentes,
-        lat="LONG.",  # Reemplaza con latitud si está disponible
-        lon="LONG.",  # Reemplaza con longitud
-        color="MUERTOS",  # Color según muertes
-        size="HERIDOS",
-        hover_data=["DESCRIPCIÓN"],
-        color_continuous_scale=px.colors.sequential.Reds,
-        mapbox_style="carto-positron",
-        zoom=5,
-        title="Mapa de Accidentes"
-    )
-    st.plotly_chart(fig_accidentes, use_container_width=True)
-
-    # Mapa interactivo con la red de carreteras
-    st.markdown("### Mapa de la Red de Carreteras")
-    fig_carreteras = px.scatter_mapbox(
-        df_trafico,
-        lat="LAT",  # Reemplaza con la columna correspondiente de latitud
-        lon="LONG",  # Reemplaza con la columna correspondiente de longitud
-        hover_data=["DESCRIPCIÓN DEL TRAMO"],
-        color="IMD AÑO",
-        color_continuous_scale=px.colors.cyclical.IceFire,
-        mapbox_style="carto-positron",
-        zoom=5,
-        title="Red de Carreteras y Volumen de Tráfico"
-    )
-    st.plotly_chart(fig_carreteras, use_container_width=True)
 
 # Función para la pestaña de predicción de zonas críticas de tráfico
 def prediccion_trafico():
