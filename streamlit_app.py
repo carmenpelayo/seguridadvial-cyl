@@ -70,6 +70,7 @@ def prediccion_accidentes():
     modelo_acc = RandomForestClassifier()
     modelo_acc.fit(X_train_acc, y_train_acc)
     y_pred_acc = modelo_acc.predict(X_test_acc)
+    st.table(y_pred_acc)
 
     # Precisión del modelo
     accuracy_acc = accuracy_score(y_test_acc, y_pred_acc)
@@ -106,27 +107,11 @@ def prediccion_trafico():
     modelo_trafico = RandomForestClassifier()
     modelo_trafico.fit(X_train_traffic, y_train_traffic)
     y_pred_trafico = modelo_trafico.predict(X_test_traffic)
+    st.table(y_pred_trafico)
 
     # Precisión del modelo
     accuracy_traffic = accuracy_score(y_test_traffic, y_pred_trafico)
     st.metric(label="Precisión del modelo de predicción de tráfico", value=f"{accuracy_traffic:.2%}")
-
-    '''
-    # Mapa interactivo con las zonas críticas de tráfico
-    fig_trafico = px.scatter_mapbox(
-        df_trafico,
-        lat="LAT",  # Reemplaza con latitud si está disponible
-        lon="LONG",  # Reemplaza con longitud
-        color="IMD AÑO",
-        size="VELOCIDAD MEDIA",
-        hover_data=["DESCRIPCIÓN DEL TRAMO"],
-        color_continuous_scale=px.colors.sequential.Blues,
-        mapbox_style="open-street-map",
-        zoom=5,
-        title="Mapa de Zonas Críticas de Tráfico"
-    )
-    st.plotly_chart(fig_trafico, use_container_width=True)
-    '''
 
 # Definir las pestañas
 tab1, tab2, tab3 = st.tabs(["Homepage", "Zonas Críticas de Accidentes", "Zonas Críticas de Tráfico"])
