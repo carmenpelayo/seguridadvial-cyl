@@ -45,7 +45,7 @@ def mostrar_homepage():
 
     # Mapa interactivo con la red de carreteras
     st.markdown("### Mapa de la Red de Carreteras")
-    fig_carreteras = px.scatter_mapbox(
+    fig_carreteras = px.scatter_map(
         df_trafico,
         lat="LAT",  # Reemplaza con la columna correspondiente de latitud
         lon="LONG",  # Reemplaza con la columna correspondiente de longitud
@@ -54,7 +54,7 @@ def mostrar_homepage():
         color_continuous_scale=px.colors.cyclical.IceFire,
         mapbox_style="carto-positron",
         zoom=5,
-        title="Red de Carreteras y Volumen de Tráfico"
+        title="Volumen de Tráfico"
     )
     st.plotly_chart(fig_carreteras, use_container_width=True)
 
