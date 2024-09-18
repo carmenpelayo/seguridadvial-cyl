@@ -9,9 +9,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 # Cargar datos
+st.cache_data()
 def cargar_datos_accidentes():
     return pd.read_csv("accidentalidad-por-carreteras.csv", sep=";")  
 
+st.cache_data()
 def cargar_datos_trafico():
     return pd.read_csv("intensidades-medias-de-trafico-y-velocidades-red-regional-de-carreteras.csv", sep=";")  
 
@@ -49,6 +51,7 @@ def mostrar_homepage():
     """)
 
 # Función para la pestaña de predicción de zonas críticas de accidentes
+st.cache_resource()
 def prediccion_accidentes():
     st.markdown("## Predicción de Zonas Críticas de Accidentes")
 
@@ -68,6 +71,7 @@ def prediccion_accidentes():
     st.metric(label="Precisión del modelo de predicción de accidentes", value=f"{accuracy_acc:.2%}")
 
 # Función para la pestaña de predicción de zonas críticas de tráfico
+st.cache_resource()
 def prediccion_trafico():
     st.markdown("## Predicción de Zonas Críticas de Tráfico")
 
