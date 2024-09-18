@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-#import sklearn
+import sklearn
 #from mpl_toolkits.basemap import Basemap
 import numpy
 #import plotly.express as px
