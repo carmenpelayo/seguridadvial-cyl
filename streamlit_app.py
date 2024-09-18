@@ -129,7 +129,7 @@ def prediccion_trafico():
         title="Mapa de Zonas Críticas de Tráfico"
     )
     st.plotly_chart(fig_trafico, use_container_width=True)
-
+'''
 # Definir las pestañas
 tab1, tab2, tab3 = st.tabs(["Homepage", "Zonas Críticas de Accidentes", "Zonas Críticas de Tráfico"])
 
@@ -141,4 +141,3 @@ with tab2:
 
 with tab3:
     prediccion_trafico()
-'''
