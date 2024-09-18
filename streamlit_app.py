@@ -39,9 +39,24 @@ def mostrar_homepage():
     st.markdown("### Evolución de los accidentes al año")
     accidentes_anio = df_accidentes.groupby("AÑO").agg({"MUERTOS": "sum", "HERIDOS": "sum"}).reset_index()
     fig_accidentes = px.line(accidentes_anio, x="AÑO", y=["MUERTOS", "HERIDOS"], markers=True,
-                             labels={"value": "Número de Accidentes", "variable": "Tipo de accidente"},
+                             labels={"value": "Cantidad", "variable": "Tipo de accidente"},
                              title="Evolución de Accidentes Mortales y No Mortales")
     st.plotly_chart(fig_accidentes, use_container_width=True)
+
+    # Mapa interactivo con la red de carreteras
+    st.markdown("### Mapa de la Red de Carreteras")
+    fig_carreteras = px.scatter_mapbox(
+        df_trafico,
+        lat="LAT",  # Reemplaza con la columna correspondiente de latitud
+        lon="LONG",  # Reemplaza con la columna correspondiente de longitud
+        hover_data=["DESCRIPCIÓN DEL TRAMO"],
+        color="IMD AÑO",
+        color_continuous_scale=px.colors.cyclical.IceFire,
+        mapbox_style="carto-positron",
+        zoom=5,
+        title="Red de Carreteras y Volumen de Tráfico"
+    )
+    st.plotly_chart(fig_carreteras, use_container_width=True)
 
     # Descripción del equipo
     st.markdown("### Autores del Proyecto")
