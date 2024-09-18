@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 #import plotly.express as px
 #import plotly.graph_objects as go
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+#from sklearn.ensemble import RandomForestClassifier
+#from sklearn.model_selection import train_test_split
+#from sklearn.metrics import accuracy_score
 
 # Cargar datos
 @st.cache
@@ -61,7 +61,7 @@ def mostrar_homepage():
     - **Autor 1**: Especialista en análisis de datos y modelos predictivos.
     - **Autor 2**: Ingeniero de tráfico con experiencia en análisis de redes viales.
     """)
-
+'''
 # Función para la pestaña de predicción de zonas críticas de accidentes
 def prediccion_accidentes():
     st.markdown("## Predicción de Zonas Críticas de Accidentes")
