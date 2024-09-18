@@ -52,7 +52,6 @@ def mostrar_homepage():
         hover_data=["DESCRIPCIÓN DEL TRAMO"],
         color="IMD AÑO",
         color_continuous_scale=px.colors.cyclical.IceFire,
-        mapbox_style="carto-positron",
         zoom=5,
         title="Volumen de Tráfico"
     )
